@@ -1,1 +1,17 @@
+h1 {
+	font-family: 'Indie Flower', cursive;
+}
 
+body {
+     background-image: url('assets/images/safari.jpg');
+ }
+
+h3 {
+	font-family: 'Cuprum', sans-serif;
+}
+
+.panel-1 {
+	border: 0;
+	height: 300px;
+	width: 300px;
+}

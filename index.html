@@ -1,1 +1,117 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="UTF-8">
+    <title>Hangman</title>
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Cuprum|Indie+Flower" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+    <script type="text/javascript" src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
+  </head>
 
+  <body>
+     <!-- <script type="text/javascript" src="assets/javascript/game.js"></script> -->
+    <div class="container">
+      <div>
+      <h1 class="text-center">Safari <br> Hangman</h1>
+      </div>
+
+      <div class="row">
+        <div class="col-md-4">
+          <div class="panel panel-default panel-1">
+                <div class="panel-body">
+                  <div id="winner-image"></div>
+                </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="panel panel-default panel-2">
+                <div class="panel-heading">
+                  <h3 class="panel-title text-center">Begin your safari by guessing a letter!</h3>
+                </div>
+                <div class="panel-body text-center">
+                  <h3>Current Word</h3>
+                  <div><span id="current-word"></span></div>
+                  <h3>Number of Guesses Remaining</h3>
+                  <div><span id="remaining-guesses"></span></div>
+                  <h3>Letters Already Guessed</h3>
+                  <div><span id="letters-guessed"></span></div>
+                  <h3>Wins</h3>
+                  <div><span id="wins"></span></div>
+                </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script type="text/javascript">
+    $(document).ready(function() {
+      console.log("ready");
+
+     // Array of possible words to be guessed
+      var safariWords = ["elephant",
+                         "antelope",
+                         "cheetah",
+                         "zebra",
+                         "buffalo",
+                         "giraffe",
+                         "hippo",
+                         "hyena"];
+
+      // // Variables for tracking our wins
+      var userWins = 0;
+      var guesses = 8;
+
+      // if winner is true then the word will reset, score with go up 1, and a picture of the word will appear 
+      
+
+      // variable to have a random word for the array chosen
+     var startingWord = safariWords[Math.floor(Math.random() * safariWords.length)];
+     $("#current-word").html(startingWord);
+     // variable to replace the characters in the word to underscores
+     var dashedWord = $("#current-word").html().replace(/[a-z]/g,'_ ');
+     $("#current-word").html(dashedWord);
+      console.log(startingWord);
+
+
+    
+     
+     getLetter = function(event) {
+        var whichkey = String.fromCharCode(event.keyCode);
+        var keypos = dashedWord.toUpperCase().indexOf(whichkey);
+        while(keypos != -1) {
+        insertkey(keypos, whichkey);
+        keypos = dashedWord.toUpperCase().indexOf(whichkey, keypos+1);
+    }
+  };
+
+   $(document).on('keyup', getLetter);
+
+     // var putPress = function (data) {
+     //  $("#current-word").html(data);
+     // }
+
+     // var getLetter = function (event){
+     //    var letters = event.key;
+     //    putPress(letters);
+     // }
+     // $(document).on('keyup', getLetter);
+
+     // if (dashed-word) {}
+
+
+      // updates the number of wins
+     $("#wins").html(userWins);
+      console.log(userWins);
+     // updates the number of remaining guesses
+     $("#remaining-guesses").html(guesses);
+     //  // // if statement to decrease the number of guesses remaining
+     //  //   if 
+     //  //     guesses--;
+
+    });
+    </script>
+  </body>
+</html>
+
+ 
