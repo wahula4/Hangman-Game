@@ -58,9 +58,10 @@
                          "hippo",
                          "hyena"];
 
+    
       // // Variables for tracking our wins
       var userWins = 0;
-      var guesses = 8;
+      var guessesLeft = 8;
 
       // if winner is true then the word will reset, score with go up 1, and a picture of the word will appear 
       
@@ -73,41 +74,31 @@
      $("#current-word").html(dashedWord);
       console.log(startingWord);
 
+      // when user types a key it will be turned into a string and made lowercase
+   $(document).keyup(function() {
+    var userGuess = String.fromCharCode(event.keyCode).toLowerCase();
+   console.log(userGuess);
 
-    
-     
-     getLetter = function(event) {
-        var whichkey = String.fromCharCode(event.keyCode);
-        var keypos = dashedWord.toUpperCase().indexOf(whichkey);
-        while(keypos != -1) {
-        insertkey(keypos, whichkey);
-        keypos = dashedWord.toUpperCase().indexOf(whichkey, keypos+1);
-    }
-  };
 
-   $(document).on('keyup', getLetter);
+ // my attempt to replace a dash with a correct letter
+function checkGuess() {
+  for (var i = 0; i < startingWord.length; i += 1) {
+    if (userGuess === startingWord[i]) {
+        console.log(userGuess);
+        numberTest = i;
+        li[i].textContent = startingWord[i];
+        textValue.value= "";
+  }
+}
+}
 
-     // var putPress = function (data) {
-     //  $("#current-word").html(data);
-     // }
-
-     // var getLetter = function (event){
-     //    var letters = event.key;
-     //    putPress(letters);
-     // }
-     // $(document).on('keyup', getLetter);
-
-     // if (dashed-word) {}
-
+});
 
       // updates the number of wins
      $("#wins").html(userWins);
-      console.log(userWins);
+      
      // updates the number of remaining guesses
-     $("#remaining-guesses").html(guesses);
-     //  // // if statement to decrease the number of guesses remaining
-     //  //   if 
-     //  //     guesses--;
+     $("#remaining-guesses").html(guessesLeft);
 
     });
     </script>
