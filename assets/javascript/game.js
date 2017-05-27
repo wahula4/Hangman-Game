@@ -43,13 +43,9 @@
     }
 
     console.log(blanksAndCorrect);
-
-      document.getElementById("current-word").innerHTML = blanksAndCorrect.join(" ");
-      document.getElementById("remaining-guesses").innerHTML = guessesLeft;
-      document.getElementById("letters-guessed").innerHTML = wrongGuesses.join(" ");
-// $("#current-word").html(blanksAndCorrect.join(" "));
-// $("#remaining-guesses").html(guessesLeft);
-// $("#letters-guessed").html(wrongGuesses.join(" "));
+$("#current-word").html(blanksAndCorrect.join(" "));
+$("#remaining-guesses").html(guessesLeft);
+$("#letters-guessed").html(wrongGuesses.join(" "));
 
   }
 
@@ -77,12 +73,9 @@ function checkLetters(letter) {
 }
 
 function afterLetterGuessed(){
-  document.getElementById("current-word").innerHTML = blanksAndCorrect.join(" ");
-  document.getElementById("remaining-guesses").innerHTML = guessesLeft;
-  document.getElementById("letters-guessed").innerHTML = wrongGuesses.join(" ");
-  // $("#current-word").html(blanksAndCorrect.join(" "));
-  // $("#remaining-guesses").html(guessesLeft);
-  // $("#letters-guessed").html(wrongGuesses.join(" "));
+  $("#current-word").html(blanksAndCorrect.join(" "));
+  $("#remaining-guesses").html(guessesLeft);
+  $("#letters-guessed").html(wrongGuesses.join(" "));
 
   if (startingWordLetters.toString() === blanksAndCorrect.toString()) {
     userWins++;
