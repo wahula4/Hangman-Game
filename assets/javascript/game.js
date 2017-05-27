@@ -1,23 +1,108 @@
-    // 1. I need to display a word for the user to guess
-    // 2. I need the user to make a letter choice
-    // 3. I need to capture the users choice
-    // 4. If the letter guessed is in the word, it should appear on the blank
-    // 5. If the letter guessed is not in the word, it should appear in "guessed letters"
-    // 6. If the letter is a repeat letter, nothing should happen
-    // 7. If the letter guessed is wrong, the number of guesses left should decrease by 1
-    // 8. When the word is complete the # of wins should increase by 1
-    // 9. After a win or a loss, a new word to guess should appear from the array
+  // Array of possible words to be guessed
+      var safariWords = ["elephant",
+                         "antelope",
+                         "cheetah",
+                         "zebra",
+                         "buffalo",
+                         "giraffe",
+                         "hippo",
+                         "hyena"];
+
+    
+      // // Variables for tracking our wins
+      var userWins = 0;
+      var guessesLeft = 8;
+      // blanks
+      var spaces = 0;
+      // word chosen by computer at random
+      var startingWord = "";    
+      // user's guessed letters
+      var lettersGuessed = "";
+      // incorrect letters
+      var wrongGuesses = [];
+      // letters in the random word
+      var startingWordLetters = [];
+      // correct and incorrect letters
+      var blanksAndCorrect = [];
 
 
+  function newGame() {
 
-      	// When  the user presses a key it will run the following function
-     	  document.onkeyup = function() {
-        }
+    startingWord = safariWords[Math.floor(Math.random() * safariWords.length)];
+    startingWordLetters = startingWord.split("");
+    spaces = startingWordLetters.length;
 
-         document.ready = function() {
-          console.log("Ready!");
-        }
-      	
-     	// Determine which key was pressed
-        	var userGuess = event.key;			
-      
+    console.log(startingWord);
+
+    guessesLeft = 8;
+    blanksAndCorrect = [];
+    wrongGuesses = [];
+
+    for (var i = 0; i < spaces; i++){
+      blanksAndCorrect.push("_");
+    }
+
+    console.log(blanksAndCorrect);
+
+      document.getElementById("current-word").innerHTML = blanksAndCorrect.join(" ");
+      document.getElementById("remaining-guesses").innerHTML = guessesLeft;
+      document.getElementById("letters-guessed").innerHTML = wrongGuesses.join(" ");
+// $("#current-word").html(blanksAndCorrect.join(" "));
+// $("#remaining-guesses").html(guessesLeft);
+// $("#letters-guessed").html(wrongGuesses.join(" "));
+
+  }
+
+function checkLetters(letter) {
+  var letterInWord = false;
+
+  for (var i = 0; i < spaces; i++) {
+    if (startingWord[i] === letter) {
+      letterInWord = true;
+    }
+  }
+
+  if (letterInWord) {
+    for ( var j = 0; j < spaces; j++) {
+      if (startingWord[j] === letter) {
+      blanksAndCorrect[j] = letter;
+}
+    }
+  }
+
+  else {
+    wrongGuesses.push(letter);
+    guessesLeft--;
+  }
+}
+
+function afterLetterGuessed(){
+  document.getElementById("current-word").innerHTML = blanksAndCorrect.join(" ");
+  document.getElementById("remaining-guesses").innerHTML = guessesLeft;
+  document.getElementById("letters-guessed").innerHTML = wrongGuesses.join(" ");
+  // $("#current-word").html(blanksAndCorrect.join(" "));
+  // $("#remaining-guesses").html(guessesLeft);
+  // $("#letters-guessed").html(wrongGuesses.join(" "));
+
+  if (startingWordLetters.toString() === blanksAndCorrect.toString()) {
+    userWins++;
+    alert("You Win! The word is " + startingWord);
+    $("#wins").html(userWins);
+    newGame();
+  }
+
+  else if (guessesLeft === 0) {
+    alert("You Lose");
+    newGame();
+  }
+
+}
+
+newGame();
+
+$(document).keyup(function(event) {
+  lettersGuessed = String.fromCharCode(event.keyCode).toLowerCase();
+  checkLetters(lettersGuessed);
+  afterLetterGuessed();
+});
+

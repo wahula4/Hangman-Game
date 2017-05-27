@@ -10,7 +10,6 @@
   </head>
 
   <body>
-     <!-- <script type="text/javascript" src="assets/javascript/game.js"></script> -->
     <div class="container">
       <div>
       <h1 class="text-center">Safari <br> Hangman</h1>
@@ -43,65 +42,7 @@
         </div>
       </div>
     </div>
-
-    <script type="text/javascript">
-    $(document).ready(function() {
-      console.log("ready");
-
-     // Array of possible words to be guessed
-      var safariWords = ["elephant",
-                         "antelope",
-                         "cheetah",
-                         "zebra",
-                         "buffalo",
-                         "giraffe",
-                         "hippo",
-                         "hyena"];
-
-    
-      // // Variables for tracking our wins
-      var userWins = 0;
-      var guessesLeft = 8;
-
-      // if winner is true then the word will reset, score with go up 1, and a picture of the word will appear 
-      
-
-      // variable to have a random word for the array chosen
-     var startingWord = safariWords[Math.floor(Math.random() * safariWords.length)];
-     $("#current-word").html(startingWord);
-     // variable to replace the characters in the word to underscores
-     var dashedWord = $("#current-word").html().replace(/[a-z]/g,'_ ');
-     $("#current-word").html(dashedWord);
-      console.log(startingWord);
-
-      // when user types a key it will be turned into a string and made lowercase
-   $(document).keyup(function() {
-    var userGuess = String.fromCharCode(event.keyCode).toLowerCase();
-   console.log(userGuess);
-
-
- // my attempt to replace a dash with a correct letter
-function checkGuess() {
-  for (var i = 0; i < startingWord.length; i += 1) {
-    if (userGuess === startingWord[i]) {
-        console.log(userGuess);
-        numberTest = i;
-        li[i].textContent = startingWord[i];
-        textValue.value= "";
-  }
-}
-}
-
-});
-
-      // updates the number of wins
-     $("#wins").html(userWins);
-      
-     // updates the number of remaining guesses
-     $("#remaining-guesses").html(guessesLeft);
-
-    });
-    </script>
+<script src="assets/javascript/game.js"></script> 
   </body>
 </html>
 
