@@ -8,7 +8,6 @@
                          "hippo",
                          "hyena"];
 
-    
       // // Variables for tracking our wins
       var userWins = 0;
       var guessesLeft = 8;
@@ -24,7 +23,6 @@
       var startingWordLetters = [];
       // correct and incorrect letters
       var blanksAndCorrect = [];
-
 
   function newGame() {
 
@@ -81,6 +79,12 @@ function afterLetterGuessed(){
     userWins++;
     alert("You Win! The word is " + startingWord);
     $("#wins").html(userWins);
+
+    var answerImage = 'assets/images/' + startingWord + '.jpg';
+    var img = $("<img>");
+    img.attr('src', answerImage);
+    $("#winner-image").html(img);
+
     newGame();
   }
 
