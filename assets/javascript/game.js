@@ -27,10 +27,11 @@
   function newGame() {
 
     startingWord = safariWords[Math.floor(Math.random() * safariWords.length)];
-    startingWordLetters = startingWord.split("");
-    spaces = startingWordLetters.length;
+    startingWordLetters = startingWord.split(""); // gives an array of in the individual letters in string
+    spaces = startingWordLetters.length; // the number of letters in a given word
 
     console.log(startingWord);
+    console.log(startingWordLetters);
 
     guessesLeft = 8;
     blanksAndCorrect = [];
@@ -41,7 +42,7 @@
     }
 
     console.log(blanksAndCorrect);
-$("#current-word").html(blanksAndCorrect.join(" "));
+$("#current-word").html(blanksAndCorrect.join(" ")); //.join removes the commmas between each letter
 $("#remaining-guesses").html(guessesLeft);
 $("#letters-guessed").html(wrongGuesses.join(" "));
 
@@ -49,26 +50,31 @@ $("#letters-guessed").html(wrongGuesses.join(" "));
 
 function checkLetters(letter) {
   var letterInWord = false;
-
+// check to see if the letter guessed exists anywhere in the word
   for (var i = 0; i < spaces; i++) {
     if (startingWord[i] === letter) {
       letterInWord = true;
     }
   }
-
+// check where in the word the letter exists
   if (letterInWord) {
     for ( var j = 0; j < spaces; j++) {
       if (startingWord[j] === letter) {
       blanksAndCorrect[j] = letter;
-}
     }
   }
-
-  else {
+}
+// letter wasn't found
+    else if (wrongGuesses == letter) {
+    alert("That letter is still wrong..");
+  }
+    else {
     wrongGuesses.push(letter);
     guessesLeft--;
   }
 }
+
+
 
 function afterLetterGuessed(){
   $("#current-word").html(blanksAndCorrect.join(" "));

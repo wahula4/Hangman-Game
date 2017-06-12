@@ -2,9 +2,13 @@ h1 {
 	font-family: 'Indie Flower', cursive;
 }
 
-body {
-     background-image: url('../images/safari.jpg');
- }
+  body { 
+  background: url('../images/safari.jpg') no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
 
 h3 {
 	font-family: 'Cuprum', sans-serif;
